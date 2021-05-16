@@ -174,8 +174,8 @@ li{
 
 .nav-link:hover{
 /*    background: linear-gradient(to right, #e1eec3, #f05053);*/
-    background: linear-gradient(to right, #14acc6, #f27521);
-/*    background-color: #14acc6;*/
+    /* background: linear-gradient(to right, #14acc6, #f27521); */
+   background-color: #ccc;
     -webkit-background-clip: text;
     -webkit-text-fill-color: transparent;
 }
