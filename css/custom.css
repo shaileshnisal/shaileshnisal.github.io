@@ -1,0 +1,791 @@
+/*Start global*/
+
+*{
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html{
+    font-size: 10px;
+    font-family: sans-serif;
+}
+
+body{
+    width: 100%;
+    height: 100%;
+    background-size: cover;
+}
+
+section{
+    padding: 6rem 0;
+}
+
+a{
+    text-decoration: none;
+    color: #eee;
+}
+
+p{
+    font-size: 1.8rem;
+    font-weight: 300;
+}
+
+img{
+    width: 80%;
+}
+
+.index{
+/*    background: linear-gradient(to right, #c31432, #240b36) no-repeat center fixed;*/
+    background: linear-gradient(to right, #000000, #434343) no-repeat center fixed;
+    color: #eee;
+}
+
+/*End Global*/
+
+/*Start reusable*/
+
+.container{
+    width: 90%;
+    max-width: 120rem;
+    height: 100%;
+    margin: 0 auto;
+    position: relative;
+}
+
+.section-heading{
+    text-align: center;
+    margin-bottom: 10rem;
+}
+
+.section-heading h1{
+    font-size: 3.5rem;
+    color: rgba(255, 255, 255, 0.3);
+    text-transform: uppercase;
+    font-weight: 300;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.section-heading h1::before,
+.section-heading h1::after{
+    content: '';
+    position: absolute;
+    bottom: -.5rem;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: rgba(255, 255, 255, 0.75);
+}
+
+.section-heading h1::before{
+    width: 10rem;
+    height: 3px;
+    border-radius: .8rem;
+}
+
+.section-heading h1::after{
+    width: 1.5rem;
+    height: 1.5rem;
+    border-radius: 100%;
+    bottom: -1rem;
+}
+
+.section-heading h6{
+    font-size: 1.6rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    position: relative;
+    margin-bottom: 1rem;
+}
+
+.has-margin-right{
+    margin-right: 5rem;
+}
+
+/*End reusable*/
+
+/*Start header*/
+
+header{
+    width: 100%;
+    height: 100vh;
+}
+
+.collapse{
+    display:none;
+}
+
+.top-nav ul{
+    list-style-type: none;
+    padding: 0;
+    overflow: hidden;
+    padding-top: 30px;
+    padding-bottom: 30px;
+}
+
+.top-nav{
+    width: 100vw;
+/*    height: 100%;*/
+/*    top: -100vh;*/
+    z-index: 50;
+    position: fixed;
+/*    background: linear-gradient(to right, #c31432, #240b36);*/
+    background: linear-gradient(to right, #000000, #434343);
+/*    border-bottom-right-radius: 100%;*/
+/*    border-bottom-left-radius: 100%;*/
+    transition: all 650ms cubic-bezier(1, 0, 0, 1);
+    box-shadow: 0 2px 5px 0 rgba(0,0,0,0.16), 0 2px 10px 0 rgba(0,0,0,0.12);
+    display: flex;
+}
+
+.nav-brand{
+    width: 20%;
+/*    margin-top: auto;*/
+    margin-top: 10px;
+    margin-bottom: 10px;
+/*    margin-bottom: auto;*/
+    text-align: center;
+}
+
+.nav-brand img {
+    width: 40%;
+}
+
+.nav-list{
+    list-style: none;
+    width: 100%;
+    height: 100%;
+    display: flex;
+/*    justify-content: center;*/
+    justify-content: flex-end;
+    margin-right: 4rem;
+    align-items: center;
+}
+
+li{
+    margin: 0 2em;
+}
+
+.nav-link{
+/*    font-family: 'The Historia Demo', sans-serif;*/
+    font-size: 2.5rem;
+    padding: 1rem;
+}
+
+.nav-link:hover{
+/*    background: linear-gradient(to right, #e1eec3, #f05053);*/
+    background: linear-gradient(to right, #14acc6, #f27521);
+/*    background-color: #14acc6;*/
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
+
+.top-nav.open {
+    top: 0;
+    border-radius: initial;
+}
+
+.menu-toggler{
+    position: absolute;
+    top: 5rem;
+    right: 5rem;
+    width: 5rem;
+    height: 5rem;
+/*    display: flex;*/
+    flex-direction: column;
+    justify-content: space-between;
+    cursor: pointer;
+    z-index: 1500;
+    transition: transform 650ms ease-out;
+}
+
+.menu-toggler.open{
+/*    transform: rotate(-45deg);*/
+}
+
+.bar{
+/*    background: linear-gradient(to right, #ffe838, #fd57bf);*/
+/*    background: linear-gradient(to right, #000000, #434343);*/
+    background-color: #ccc;
+    width: 100%;
+    height: 4px;
+    border-radius: .8rem;
+}
+
+.bar.center{
+    position: relative;
+    transition: 650ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+}
+
+.open .bar.center{
+    opacity: 0;
+}
+
+.bar.start{
+    position: relative;
+    transform-origin: left;
+    transition: transform 650ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+}
+
+.open .bar.start{
+    top: 5.5px;
+    transform: rotate(45deg) translateX(.2rem);
+}
+
+.bar.end{
+    position: relative;
+    align-self: flex-end;
+    transform-origin: left;
+    transition: transform 650ms cubic-bezier(0.54, -0.81, 0.57, 0.57);
+}
+
+.open .bar.end{
+    top: -5.5px;
+    transform: rotate(-45deg) translateX(-.2rem);
+}
+
+.landing-page {
+    position: absolute;
+    top: 50%;
+    left: 5%;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    height: 1vh;
+    width: 90%;
+}
+
+.landing-image {
+    flex: 1;
+    margin-top: 10%;
+}
+
+.landing-image img {
+    width: 80%;
+}
+
+.landing-text{
+    /* position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%; */
+    flex: 3;
+    margin-top: 10%;
+    text-align: center;
+    z-index: 1;
+}
+
+.landing-text h1{
+    font-size: 10rem;
+/*    font-family: 'The Historia Demo';*/
+/*    background: linear-gradient(to top, #ffe838, #fd57bf);*/
+    background: #fff;
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+    padding: 1rem;
+    user-select: none;
+}
+
+.landing-text h6{
+    font-size: 2rem;
+    font-weight: 300;
+    margin-bottom: 4rem;
+}
+
+/*End header*/
+
+/*Start games*/
+
+.game-items{
+    flex-wrap: wrap;
+    display: flex;
+    justify-content: space-evenly;
+}
+
+.game-item{
+    width: 25%;
+    text-align: center;
+}
+
+.game-item p{
+    font-size: 1.5rem;
+    font-weight: bold;
+}
+
+.game-item img{
+    width: 50%;
+}
+
+/*End games*/
+
+/*Start about*/
+
+.about .container{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.about-heading{
+    text-align: left;
+    text-transform: uppercase;
+    line-height: 0;
+    margin-bottom: 6rem;
+}
+
+.about-heading h1{
+    font-size: 3rem;
+    opacity: .3;
+}
+
+.about-heading h6{
+    font-size: 2rem;
+    font-weight: 300;
+}
+
+.about-img{
+    flex: 1;
+}
+
+.about-img img{
+    border-radius: 10%;
+    
+}
+
+.profile-img{
+    
+}
+
+.profile-img img{
+    width: 100%;
+}
+
+.about-details{
+    flex: 1;
+    margin-top: 5rem;
+}
+
+.about-details p{
+/*    text-align: justify; */
+}
+
+.social-media{
+    
+}
+
+/*End about*/
+
+/* Start Youtube */
+
+.video-container {
+    text-align: center;
+    position: relative;
+    height: 0;
+    padding-bottom: 56.25%;
+}
+
+.video-container iframe {
+    width: 80%;
+    position: absolute;
+    top: 0;
+    left: 10%;
+    height: 80%;
+}
+
+.youtube-link {
+    text-align: center;
+}
+
+.youtube-link a {
+    font-size: 1.5rem;
+    text-decoration: underline;
+}
+
+/* End YouTube */
+
+
+/*Start team*/
+
+.project-item{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 5rem;
+}
+
+/*
+.project-item:last-child{
+    margin-bottom: 0;
+}
+*/
+
+.team-cards{
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.card {
+    margin: 2rem 10rem;
+/*    display: flex;*/
+/*    align-items: flex-start;*/
+    text-align: center;
+/*    flex-grow: 1;*/
+    width: 25%;
+/*    margin-left: 20px;*/
+/*    background: linear-gradient(135deg, #FF0099, #493240);*/
+/*    background: linear-gradient(135deg, #41295a, #2F0743);*/
+    background: linear-gradient(135deg, #000000, #434343);
+    padding: 20px;
+    /* Add shadows to create the "card" effect */
+    box-shadow: 0 4px 8px 0 rgba(0,0,0,0.2);
+    transition: 0.3s;
+}
+
+/* On mouse-over, add a deeper shadow */
+.card:hover {
+/*    cursor: pointer;*/
+    cursor: default;
+    box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2);
+}
+
+.team-member-desription{
+    flex: 1;
+}
+
+.team-member-description h1{
+    font-size: 3rem;
+    font-weight: 300;
+    margin-top: 1rem;
+}
+
+.team-member-description h6{
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    font-weight: 300;
+    opacity: 0.3;
+    margin-bottom: 1rem;
+}
+
+.team-member-description .cta{
+    display: inline-block;
+    margin-top: 2.5rem;
+    font-size: 1.5rem;
+    text-transform: uppercase;
+    color: #1dcaff;
+    transition: color 650ms;
+}
+
+.team-member-description .cta:hover{
+    text-decoration: underline;
+}
+
+.team-member-description p{
+    margin-bottom: 2rem;
+}
+
+.team-member-description a{
+    font-size: 1.8rem;
+    color: #00B4DB;
+}
+
+.team-member-description a:hover{
+    text-decoration: underline;
+}
+
+.social-media-icons{
+    margin-top: 1rem;
+}
+
+.social-media-icons a{
+    font-size: 2.5rem;
+    margin: 1rem;
+    color: #fff;
+}
+
+.social-media-icons a:hover{
+    color: #00B4DB;
+}
+
+/*End team*/
+
+/*Start footer*/
+
+footer{
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 4rem;
+    text-align: center;
+}
+
+.social-media{
+    margin-left: 2rem;
+    font-size: 2.5rem;
+}
+
+.social-media p{
+    margin-bottom: 1rem;
+}
+
+.social-media a{
+    margin: 1rem;
+    font-size: 3rem;
+}
+
+.social-media a:hover{
+    color: #C0C0C0;
+}
+
+.copyright{
+/*    width: 100%;*/
+    text-align: center;
+/*    padding: 2rem 0;*/
+/*    position: relative;*/
+    margin-right: 2rem;
+}
+
+.copyright p{
+    margin-bottom: .8rem;
+}
+
+.copyright a{
+    font-size: 1.5rem;
+    color: #00B4DB;
+}
+
+.copyright a:hover{
+    text-decoration: underline;
+}
+
+/*End footer*/
+
+/*Start privacy*/
+
+.privacy-heading{
+    font-size: 3rem;
+    margin-bottom: 3rem;
+}
+
+.privacy-subheading{
+    font-size: 2rem;
+    margin-top: 2rem;
+    margin-bottom: 1rem;
+    font-weight: bold;
+}
+
+.privacy-details a{
+    font-size: 2rem;
+    color: #00B4DB;
+}
+
+.privacy-details a:hover{
+    text-decoration: underline;
+}
+
+/*End privacy*/
+
+/*media queries*/
+
+@media screen and (max-width: 980px) {
+    .card{
+        width: 40%;
+        margin-bottom: 20px;
+    }
+}
+
+@media screen and (max-width: 900px) {
+    .nav-brand{
+        display: none;
+    }
+    
+    .collapse{
+        display: flex;
+    }
+    
+    .top-nav{
+        width: 100%;
+        height: 100%;
+        top: -150vh;
+        z-index: 50;
+        position: fixed;
+        background-color: #614385;
+        border-bottom-right-radius: 100%;
+        border-bottom-left-radius: 100%;
+        transition: all 650ms cubic-bezier(1, 0, 0, 1);
+    }
+    
+    .nav-list{
+        flex-direction: column;
+        justify-content: space-evenly;
+        margin-right: 0;
+    }
+    
+/*
+    .card{
+        flex-grow: 1;
+    }
+*/
+}
+
+@media screen and (max-width: 768px) {
+    .collapse{
+        display: flex;
+    }
+    
+    .top-nav{
+        width: 100%;
+        height: 100%;
+        top: -150vh;
+        z-index: 50;
+        position: fixed;
+        background-color: #614385;
+        border-bottom-right-radius: 100%;
+        border-bottom-left-radius: 100%;
+        transition: all 650ms cubic-bezier(1, 0, 0, 1);
+    }
+
+    .landing-image {
+        flex: 0;
+    }
+    
+    .landing-text h1{
+        font-size: 15rem;
+    }
+    
+    .landing-text h6{
+        font-size: 1.7rem;
+    }
+    
+    .nav-list{
+        flex-direction: column;
+    }
+    
+    li{
+        margin: 2rem 0;
+    }
+    
+    .nav-link{
+        font-size: 4.5rem;
+    }
+    
+    .game-item{
+        width: 50%;
+    }
+    
+    .about-heading h1{
+        font-size: 2rem;
+    }
+    
+    section-heading h1{
+        font-size: 3rem;
+    }
+    
+    .about-details .nav-list{
+        flex-direction: initial;
+    }
+    
+    .about-details li{
+        margin: 0 2rem;
+    }
+    
+    .timeline ul{
+        margin: 0 0 0 auto;
+    }
+    
+    .timeline .date::before{
+        left: -19rem;
+    }
+    
+    .timeline .date::after{
+        left: -5.9rem;
+    }
+    
+    .card{
+        width: 50%;
+    }
+}
+
+@media screen and (max-width: 600px) {
+    .menu-toggler{
+        top: 2rem;
+        right: 2rem;
+    }
+    
+    .landing-text h1{
+        font-size: 8rem;
+    }
+    
+    .landing-text h6{
+        font-size: 1.4rem;
+    }
+    
+    .nav-link{
+        font-size: 3.5rem;
+    }
+    
+    .game-item{
+        width: 90%;
+        margin-bottom: 3rem;
+    }
+    
+    .about .container{
+        flex-direction: column;
+    }
+    
+    .about-img{
+        margin: 0 0 7rem 0;
+        text-align: center;
+    }
+    
+    .team-cards{
+        flex-direction: column;
+        align-items: center;
+    }
+    
+    .card{
+        margin: 2rem 0;
+        width: 90%;
+    }
+    
+    .team-member-img{
+        margin: 0 0 2rem 0;
+        order: 1;
+    }
+    
+    .team-member-description{
+        margin: 0;
+        order: 2;
+    }
+    
+    .timeline p{
+        font-size: 1.5rem;
+    }
+    
+    .timeline .date::before{
+        font-size: 1.4rem;
+    }
+    
+    form{
+        width: 100%;
+    }
+    
+    .up{
+        right: 2rem;
+    }
+    
+    .footer{
+        flex-direction: column;
+    }
+    
+    .social-media{
+        margin-left: 0;
+        margin-bottom: 2rem;
+    }
+    
+    .copyright{
+        margin-right: 0;
+    }
+    
+}
